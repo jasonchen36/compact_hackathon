@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodeKast</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/sweetalert.css">
+</head>
+<body>
+  <div id="codekast-wrapper">
+    <header>
+      <div id="ck-logo"><img src="/images/ck-logo.png" width="60"><p>CodeKast.io</p></div>
+      <div id="user-log"></div>
+    </header>
+
+    <div class="container ck-roomwrapper">
+      <div class="ck-room col-md-4">
+        <center>
+          <div class="ck-newroom">
+            <h1 id="ck-add" onclick="addRoom()">+</h1>
+            <p id="ck-addtext">Add New Room</p>
+          </div>
+          <div class="ck-projecttitle">
+            <p class="ck-cancelroom" onclick="cancelRoom()">X</p>
+            <fieldset class="form-fieldset ui-input __first">
+              <input type="text" id="project_name">
+              <label for="name"><span>Project Name</span></label>
+            </fieldset>
+
+            <fieldset class="form-fieldset ui-input __second">
+              <input type="text" id="project_desc">
+              <label for="description"><span>Description</span></label>
+            </fieldset>
+
+            <input type="submit" class="btn" value="Create Room" onclick="createRoom()">
+          </div>
+        </center>
+      </div>
+
+      <% rooms.forEach(function(room) { %>
+      <div class="ck-room col-md-3">
+        <div class="newroom-wrap">
+          <h1 class="room-title"><%= room.name %></h1>
+          <p class="room-des"><%= room.desc %></p>
+          <p class="room-creator">by <span class="creator-name"><%= user.username %></span></p>
+          <a href="/classrooms/<%= room._id %>" class="btn btn-primary" target="_blank">Join Room</a>
+        </div>
+      </div>
+      <% }); %>
+
+      <!-- todo: whole div clickable leads to edit classroom page, button to classroom page -->
+      <!-- <div class="ck-room col-md-4">
+        <div class="newroom-wrap">
+          <h1 class="room-title">HTML 5 workshop</h1>
+          <p class="room-des">class 1, introduction of html and css</p>
+          <p class="room-creator">by <span class="creator-name">Dr Lau</span></p>
+          <a href="#" class="btn btn-primary" target="_blank">Join Room</a>
+        </div>
+      </div> -->
+    </div>
+
+    <div id="footer">
+
+    </div>
+  </div><!-- Wrapper end -->
+
+  <div class="profile-act">
+    <div id="profile-icon">
+      <ul>
+        <center>
+          <li id="history" class="profile-icon-active" alt="history"></li>
+          <li id="setting" alt="setting"></li>
+          <li id="profile" alt="profile"></li>
+          <li id="logout" alt="logout"></li>
+        </center>
+      </ul>
+    </div>
+  </div>
+
+  <!--<script src="/socket.io/socket.io.js"></script>-->
+  <script src="/js/jquery-1.11.3.min.js"></script>
+  <scirpt src="/js/bootstrap.min.js"></scirpt>
+  <script src="/js/sweetalert.min.js"></script>
+  <script>
+  var data;
+    // jquery
+    $(document).ready(function() {
+      $('#user-log').click(function() {
+        // $('#profile-act').animate({right:0});
+        $('.profile-act').toggleClass('active');
+      });
+      // rooms loaded through rendering
+      //loadRooms();
+
+      $('#logout').click(function() {
+        window.location = '/logout';
+      });
+
+    });
+
+    // predefined functions and socket handlers
+    var username = '<%= user.username %>';
+    // todo: render this upon page generation instead to prevent delay, or angular?
+    // function loadRooms() {
+    //   $.get('/api/classrooms', function(data) {
+    //     $.each(data, function(index, room) {
+    //       // $('#classes').append('<option>'+item+"</option>");
+    //       $('.ck-roomwrapper').append('<div class="ck-room col-md-3"><div class="newroom-wrap"><h1 class="room-title">' + room.name +'</h1><p class="room-des">'+ room.desc +'</p><p class="room-creator">by ' + username + '</p><a href="/classrooms/' + room.id + '" class="btn btn-primary" target="_blank">Join Room</a></div></div>');
+    //     });
+    //  });
+    // }
+
+    function addRoom() {
+      console.log('addRoom() clicked.');
+      $('.ck-newroom').fadeOut(200, function() {
+        $('.ck-projecttitle').fadeIn(200);
+      });
+    }
+
+    function cancelRoom() {
+      $('.ck-projecttitle').fadeOut(200, function() {
+        $('.ck-newroom').fadeIn(200);
+      });
+      $('#project_name,#project_desc').val('');
+    }
+
+    function createRoom() {
+      var proj_name = $('#project_name').val();
+      var proj_desc = $('#project_desc').val();
+      if (proj_name === '' || proj_desc === '') {
+        swal({
+          title: "Error!",
+          text: "Project name and description cannot be blank!",
+          type: "error",
+          confirmButtonText: "Got it!"
+        });
+        return;
+      }
+
+      //$('.ck-room').last().clone().appendTo('.ck-roomwraper');
+      $('.ck-projecttitle').fadeOut(200, function() {
+        $('.ck-newroom').fadeIn(200);
+      });
+      $('#project_name,#project_desc').val('');
+
+      console.log('Creating new room...:');
+
+      // old school method...todo: change to angular, for now it's ok
+      data = { name: proj_name, desc: proj_desc };
+      $.post('/classrooms', data, function(res) {
+        console.log(res);
+        $('.ck-roomwrapper').append('<div class="ck-room col-md-3"><div class="newroom-wrap"><h1 class="room-title">' + res.name +'</h1><p class="room-des">'+ res.desc +'</p><p class="room-creator">by <span class="creator-name">' + username + '</span></p><a href="/classrooms/' + res._id + '" class="btn btn-primary" target="_blank">Join Room</a></div></div>');
+      }).fail(function(res) {
+        var jsonResponse = JSON.parse(res.responseText);
+        swal({
+          title: "Error!",
+          text: jsonResponse.error,
+          type: "error",
+          confirmButtonText: "Ok!"
+        }, function() {
+          setTimeout(function(){
+            window.location = '/login';
+          }, 1000);
+        });
+      });
+    }
+
+    $.get('/classrooms', function(data)
+    {
+      console.log('data',data);
+      $.each(data, function(item)
+      {
+
+        // $('#classes').append('<option>'+item+"</option>");
+        $('.ck-roomwarper').append('<div class="ck-room col-md-3"><div class="newroom-warp"><h1 class="room-title">'+roomname +'</h1><p class="room-des">'+ description +'</p><p class="room-creator">by Dr Lau</p><button type="button" class="btn btn-primary btn-joinroom" data-roomid='+item+'>Join Room</button></div></div>');
+        $('#projectname,#description').val('');
+
+        $('.btn-joinroom').on('click', function()
+        {
+          var thisRoom = $(this).attr('data-roomid');
+          window.location = '/classroom/' + thisRoom;
+        });
+      })
+    })
+  </script>
+
+</body>
+</html>

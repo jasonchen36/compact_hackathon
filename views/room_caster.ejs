@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CodeKast Alpha </title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
+  <style>
+    /*#editor1 {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height:500px;
+    }
+
+    input {
+      font-size:20px;
+    }
+
+    .navbar-nav>.active>a {
+      border: 1px solid #333;
+    }
+
+    body {
+      margin: 0;
+      padding-top: 50px;
+      background-color: #222;
+    }*/
+
+    /*#content-wrap {
+      height: calc(100vh - 64px);
+    }
+
+    .tab {
+      float: left;
+      height: 100%;
+    }
+
+    #slides,
+    #html,
+    #css,
+    #js {
+      border-width: 0 5px 0 0;
+      border-style: solid;
+      -webkit-border-image:
+        -webkit-gradient(linear, 100% 0, 0 0, from(rgba(0, 0, 0, 1)), to(rgba(84, 84, 84, 0.8))) 1 100%;
+      -webkit-border-image:
+        -webkit-linear-gradient(left, rgba(0, 0, 0, 1), rgba(84, 84, 84, 0.8)) 1 100%;
+      -moz-border-image:
+        -moz-linear-gradient(left, rgba(0, 0, 0, 1), rgba(84, 84, 84, 0.8)) 1 100%;
+      -o-border-image:
+        -o-linear-gradient(left, rgba(0, 0, 0, 1), rgba(84, 84, 84, 0.8)) 1 100%;
+      border-image:
+          linear-gradient(to left, rgba(0, 0, 0, 1), rgba(84, 84, 84, 0.8)) 1 100%;
+    }
+
+    #html {
+      background-color: #f7f7f7;
+      width: calc(100vw /2);
+    }*/
+
+   /* #output {
+      background-color: white;*/
+      /* wenn nicht -1px *
+      /* width: calc(10% - 1px); */
+     /* position:relative;
+      width: calc(100vw /2);
+    }*/
+
+   /* #txtEditor {
+      height:500px;
+    }*/
+
+    #content {
+      /*position:absolute;
+      left: 0;
+      top:0;
+      min-width:100%;
+      min-height:100%;*/
+    }
+  </style>
+  <style>
+body {
+  background: #1C1C1C;
+  font-family: Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace;
+}
+
+a {
+  color: #99CC99;
+}
+
+#ck-logo {
+    padding: 10px;
+    margin-left: 50px;
+}
+
+#ck-logo img {
+    float: left;
+}
+
+#ck-logo p {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    line-height: 60px;
+}
+
+.active {
+    right: 280px;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    background: #2a3b41;
+    position: relative;
+}
+
+#preview {
+  background: #fff;
+  transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -webkit-transition: all 0.15s;
+}
+
+#commandbar {
+  position: absolute;
+  height: 31px;
+  top: 80px;
+  left: 0;
+  right: 60%;
+  background: #1c1c1c;
+  color: #666666;
+  transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -webkit-transition: all 0.15s;
+  overflow: hidden;
+}
+
+#menu {
+  text-indent: -999999px;
+  float: left;
+  height: 31px;
+  text-align: center;
+  opacity: 0.5;
+  width: 47px;
+}
+
+#menu:hover {
+  opacity: 1;
+  background-color: #2D2D2D;
+}
+
+#menu-button {
+  background-image: url(/images/menu-icon.png);
+  width: 15px;
+  height: 13px;
+  display: block;
+  margin: 9px auto 0px auto;
+}
+
+.small#menu   {width: 40px;}
+.medium#menu  {width: 47px;}
+.large#menu   {width: 54px;}
+.x-large#menu {width: 61px;}
+
+#commandbar #title {
+  display: inline-block;
+  text-decoration: none;
+  border: 0;
+  color: #aaa;
+  padding: 8px 5px 7px 5px;
+  font-size: 12px;
+}
+
+#commandbar #title.hover {
+  background: #2D2D2D;
+}
+
+
+
+
+#commandbar #toggle-fullscreen {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  opacity: 0.75;
+  transition: none;
+  -moz-transition: none;
+  -webkit-transition: none;
+}
+
+#commandbar #toggle-fullscreen:hover {
+  opacity: 1;
+}
+
+#commandbar #toggle-fullscreen .tooltip {
+  background: #1C1C1C;
+  box-shadow: -6px 0px 10px #1c1c1c;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 30px;
+  font-size: 12px;
+  color: #666;
+  text-align: right;
+  width: 180px;
+}
+
+#commandbar #toggle-fullscreen:hover .tooltip {
+  display: block;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 60%;
+  background: #1C1C1C;
+  text-align: center;
+  color: #666666;
+  padding: 7px 0px 8px 0px;
+  font-size: 12px;
+  transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -webkit-transition: all 0.15s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+#footer iframe {
+  position: absolute;
+  left: 10px;
+}
+
+#editor {
+  position: absolute;
+  top: 112px;
+  right: 60%;
+  bottom: 31px;
+  left: 0;
+  transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -webkit-transition: all 0.15s;
+  background: #2d2d2d;
+}
+#preview {
+  position: absolute;
+  top: 80px;
+  bottom: 0px;
+  left: 40%;
+  right: 0;
+  border: 0;
+  width: 60%;
+  height: 100%;
+  border-radius: 5px 0px 0px 5px;
+  /*box-shadow: -4px 0px 15px #1C1C1C;*/
+}
+
+/* ---------------------------------------------------------------------------------
+    Menu Mode.
+--------------------------------------------------------------------------------  */
+
+#menu-pane {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 80%;
+  box-shadow: inset -4px 0px 15px #0f0f0f;
+  color: #aaa;
+  padding: 20px;
+  opacity: 0;
+  transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -webkit-transition: all 0.15s;
+  overflow-y: scroll;
+}
+
+#menu-pane h1 {
+  width: 176px;
+  height: 29px;
+  text-indent: -99999px;
+  /*background-image: url(/img/logo.png);*/
+  margin: 10px;
+}
+
+#menu-pane p.subtitle {
+  font-size: 9px;
+  text-align: center;
+  color: #666;
+}
+
+#menu-pane h2 {
+  border-bottom: 1px dashed #2D2D2D;
+  text-transform: uppercase;
+  font-size: 13px;
+  padding-bottom: 5px;
+  margin-top: 25px;
+  font-weight: normal;
+}
+
+#menu-pane p {
+  font-size: 11px;
+  margin-top: 0;
+}
+#menu-pane ul {
+  margin: 0;
+  padding: 0;
+}
+#menu-pane li {
+  font-size: 11px;
+  list-style-type: none;
+}
+#codekast.menu #menu-pane {
+  opacity: 1;
+}
+#codekast.menu #commandbar, #codekast.menu #editor, #codekast.menu #footer {
+  left: 20%;
+  right: 40%;
+}
+#codekast.menu #preview {
+  left: 60%;
+  width: 40%;
+  right: 0;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 4px;
+}
+::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background: #5a5a5a;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: #444;
+}
+
+body.resizing * {
+  -webkit-transition: none !important;
+  -webkit-user-select: none !important;
+  -moz-transition: none !important;
+  -moz-user-select: none !important;
+}
+
+#drag-handle {
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  width: 10px;
+  left: 40%;
+  z-index: 1000;
+}
+
+#drag-handle:hover {
+  cursor: col-resize;
+}
+
+#drag-handle.dragging {
+  width: 200px;
+}
+  </style>
+</head>
+<body id="codekast" tabindex="0">
+
+  <div id="menu-pane">
+    <h1>CodeKast</h1>
+    <p class='subtitle'>Instant HTML &amp; CSS Editor</p>
+    <h2>About</h2>
+    <p>Hello there..chat box?.</p>
+
+  </div>
+  <header>
+      <div id="ck-logo"><img src="/images/ck-logo.png" width="60">
+          <p>CodeKast.io</p>
+      </div>
+      <div id="user-log"></div>
+  </header>
+  <div id="commandbar">
+    <a href="javascript:void(0)" id="menu"><span id="menu-button">&nbsp;</span></a>
+    <a href="javascript:void(0)" id="title">Loading...</a>
+  </div>
+
+  <div id="editor"></div>
+
+  <div id="footer">
+    Powered by CodeKast
+  </div>
+
+  <div id="drag-handle"></div>
+
+  <iframe id="preview"></iframe>
+
+  <script>
+    var CodeKast = { class_id: '<%= room._id %>', class_name: '<%= room.name %>' };
+  </script>
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>CodeKast Alpha - BroadCaster</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div id="txtEditor"></div>
+      </div>
+
+      <div class="col-md-6">
+        <iframe id='content'>
+
+        </iframe>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          <input id='request' type="button" value='Request student screen'>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<!--   <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+       Brand and toggle get grouped for better mobile display
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">CodeKast</a>
+      </div>
+
+       Collect the nav links, forms, and other content for toggling
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li role="presentation" id="htmlMenu" class="active"><a href="#">HTML</a></li>
+          <li role="presentation" id="outputMenu" class="active"><a href="#">Output</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="content-wrap">
+    <div id="html" class="tab">
+      <div id="txtEditor"></div>
+    </div>
+    <div id="output" class="tab">
+      <iframe id='content' sandbox="allow-modals allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts"></iframe>
+    </div>
+  </div> -->
+
+  <script src='https://code.jquery.com/jquery-1.11.3.js'></script>
+
+  <script src="/ace-builds/src/ace.js"></script>
+  <script src="https://cloud9ide.github.io/emmet-core/emmet.js"></script>
+  <script src="/ace-builds/src/ext-emmet.js"></script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <!--<script src="/js/underscore-min.js"></script>
+  <script src="/js/keymaster.js"></script>-->
+
+  <script src="/js/ck-instructor.js"></script>
+
+  <script>
+  //  $('#slides').resizable({
+  //   handles: 'e',
+  //   alsoResizeReverse: '#html'
+  // });
+
+  // $('#html').resizable({
+  // handles: 'e',
+  // alsoResizeReverse: '#output'
+  // });
+
+  // $('#css').resizable({
+  //   handles: 'e',
+  //   alsoResizeReverse: '#js'
+  // });
+
+  // $('#js').resizable({
+  //   handles: 'e',
+  //   alsoResizeReverse: '#output'
+  // });
+
+  // var showTab = function(tab) {
+  //   $('.tab').each(function() {
+  //     if ($(this).attr('id') === tab) {
+  //         if ($(this).is(':visible')) {
+
+  //             $('#' + tab + 'Menu').removeClass('active');
+  //              console.log($('.active').length );
+  //              var num = $('.active').length;
+  //              $('.tab').css({'width':'calc(100vw/'+num+')'});
+  //             // Seite ausblenden
+  //             $(this).hide();
+  //         } else {
+  //           $('#' + tab + 'Menu').addClass('active');
+  //           var num = $('.active').length;
+  //              $('.tab').css({'width':'calc(100vw/'+num+')'});
+  //             // Seite ausblenden
+  //           $(this).show();
+  //         }
+  //     }
+  //   });
+  // };
+
+  // $('.nav').on('click', 'li', function () {
+  // var id = $(this).attr('id'),
+  //     tab = id.substring(0, id.length - 4);
+  // showTab(tab);
+  // });
+
+  // $.ui.plugin.add("resizable", "alsoResizeReverse", {
+
+  //       start: function (event, ui) {
+
+  //           var self = $(this).data("ui-resizable"), o = self.options,
+
+  //               _store = function (exp) {
+  //                   $(exp).each(function () {
+  //                       $(this).data("ui-resizable-alsoresize-reverse", {
+  //                           width:  parseInt($(this).width(), 10),
+  //                           height: parseInt($(this).height(), 10),
+  //                           left:   parseInt($(this).css('left'), 10),
+  //                           top:    parseInt($(this).css('top'), 10)
+  //                       });
+  //                   });
+  //               };
+
+  //           if (typeof (o.alsoResizeReverse) == 'object' && !o.alsoResizeReverse.parentNode) {
+  //               if (o.alsoResizeReverse.length) {
+  //                   o.alsoResize = o.alsoResizeReverse[0];
+  //                   _store(o.alsoResizeReverse);
+  //               } else {
+  //                   $.each(o.alsoResizeReverse, function (exp, c) {
+  //                       _store(exp);
+  //                   });
+  //               }
+  //           } else {
+  //               _store(o.alsoResizeReverse);
+  //           }
+  //       },
+
+  //       resize: function (event, ui) {
+  //           var self = $(this).data("ui-resizable"), o = self.options, os = self.originalSize, op = self.originalPosition,
+  //               delta = {
+  //                   height: (self.size.height - os.height) || 0,
+  //                   width:  (self.size.width - os.width)   || 0,
+  //                   top:    (self.position.top - op.top)   || 0,
+  //                   left:   (self.position.left - op.left) || 0
+  //               },
+
+  //               _alsoResizeReverse = function (exp, c) {
+  //                   $(exp).each(function () {
+  //                       var el    = $(this),
+  //                           start = $(this).data("ui-resizable-alsoresize-reverse"),
+  //                           style = {},
+  //                           css   = c && c.length ? c : ['width', 'height', 'top', 'left'];
+
+  //                       $.each(css || ['width', 'height', 'top', 'left'], function (i, prop) {
+  //                           var sum = (start[prop] || 0) - (delta[prop] || 0), // subtracting instead of adding
+  //                               corr = 0;
+
+  //                           if (prop === 'width') {
+  //                               // correct for some divs having broad right border
+  //                               if (self.element.context.id === 'html') {
+  //                                   corr = 5;
+  //                               } else {
+  //                                   corr = 10;
+  //                               }
+  //                           }
+
+  //                           if (sum && sum >= 0) {
+  //                               style[prop] = sum + corr || null;
+  //                           }
+  //                       });
+
+  //                       el.css(style);
+  //                   });
+  //               };
+
+  //           if (typeof (o.alsoResizeReverse) == 'object' && !o.alsoResizeReverse.nodeType) {
+  //               $.each(o.alsoResizeReverse, function (exp, c) {
+  //                   _alsoResizeReverse(exp, c);
+  //               });
+  //           } else {
+  //               _alsoResizeReverse(o.alsoResizeReverse);
+  //           }
+  //       },
+
+  //       stop: function (event, ui) {
+  //           var self = $(this).data("ui-resizable");
+
+  //           $(this).removeData("ui-resizable-alsoresize-reverse");
+  //       }
+  //   });
+  </script>
+</body>
+</html>

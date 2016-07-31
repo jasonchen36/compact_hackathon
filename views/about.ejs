@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeKast</title>
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            background: #eceff0;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .container {
+            width: 80%;
+        }
+
+        #codekast-warper {
+            position: relative;
+        }
+
+        #ck-logo {
+            padding: 10px;
+            margin-left: 50px;
+        }
+
+        #ck-logo img {
+            float: left;
+        }
+
+        #ck-logo p {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            float: left;
+            line-height: 60px;
+        }
+
+        .active {
+            right: 280px;
+        }
+
+        header {
+            width: 100%;
+            height: 80px;
+            background: #2a3b41;
+            position: relative;
+        }
+
+        .content {
+          width:100%;
+          height:auto;
+          min-height:100px;
+          padding:20px 30px;
+          background:white;
+          text-align: center;
+
+        }
+
+        .content h1 { letter-spacing: 2px;}
+        .content p {font-size:14px;}
+
+        .container {
+          text-align: center;
+        }
+
+        .content-warp {
+          width:100%;
+          max-width:1024px;
+          height:auto;
+          min-height:300px;
+          position:relative;
+          margin:0 auto;
+        }
+
+        .teamMember-warp {margin:15px 0;}
+        .teamMember-warp>div {
+          padding:10px;
+          background:white;
+          border-radius:3px;
+          box-sizing:border-box;
+          height: auto;
+          min-height:250px;
+          box-shadow: 0 2px 2px 0 rgba(0,0,0,.1);
+          text-align: center;
+        }
+
+        .team-pic {
+          width:120px;
+          height:120px;
+          border-radius:50%;
+          background:grey;
+          margin:20px auto;
+        }
+
+        /* FOOTER */
+        #footer {
+          width:100%;
+          height:auto;
+          min-height:200px;
+          background: white;
+          padding:15px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="codekast-warper">
+        <header>
+            <div id="ck-logo"><img src="/images/ck-logo.png" width="60">
+                <p>CodeKast.io</p>
+            </div>
+            <div id="user-log"></div>
+        </header>
+        <div class="content">
+            <div>
+                <h1>
+                    Learning Code in Live
+                </h1>
+
+                <p>
+                  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam tellus erat, sodales ac fermentum et, commodo luctus elit. Aenean lacinia id ante eu posuere. Aliquam lectus dui, venenatis at enim ut, maximus rhoncus justo. Proin a tristique diam. Vestibulum dui ante, volutpat vel bibendum vel, commodo et purus. Aenean ligula nulla, varius sed massa eu, euismod tempus purus.<br><br>
+
+Nam vitae fringilla nunc. Proin elementum fermentum lectus vel viverra. Aliquam venenatis purus convallis erat semper tincidunt. Maecenas efficitur orci sit amet nulla blandit, quis accumsan felis varius. Duis ullamcorper nibh vel facilisis lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tempor lobortis rhoncus. Morbi facilisis felis vel mauris viverra, sit amet pharetra risus tempor. Vivamus at mi nulla. Ut eleifend justo fermentum augue venenatis, maximus pellentesque libero laoreet. Phasellus iaculis, lorem sed ornare porttitor, ligula massa ultrices neque, ut egestas dolor velit vel purus. Etiam vitae vestibulum ex. Phasellus non ligula at ante facilisis varius id at nisi. Sed convallis, ipsum eget cursus egestas, ex justo dictum felis, sed pulvinar diam est a neque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                </p>
+
+                <p>Join Our team </p>
+            </div>
+        </div>
+        <div class="container">
+          <div class="content-warp">
+              <h3>Team</h3>
+              <div class="teamMember-warp col-md-3 col-sm-4">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Lau CherHan</h5>
+                    <p>Data</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+              <div class="teamMember-warp col-md-3 col-sm-4">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Jay Chin</h5>
+                    <p>Programmer</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+              <div class="teamMember-warp col-md-3 col-sm-4">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Jam Lam</h5>
+                    <p>Designer</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+              <div class="teamMember-warp col-md-3 col-sm-4">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Jam Lam</h5>
+                    <p>Designer</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+              <div class="teamMember-warp col-md-3 col-sm-4">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Jam Lam</h5>
+                    <p>Designer</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+              <div class="teamMember-warp col-md-3 col-sm-4">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Jam Lam</h5>
+                    <p>Designer</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+              <div class="teamMember-warp col-md-3 col-sm-4">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Jam Lam</h5>
+                    <p>Designer</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+              <div class="teamMember-warp col-md-3 col-sm-4">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Jam Lam</h5>
+                    <p>Designer</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+              <div class="teamMember-warp col-md-3 col-sm-4 ">
+                <div>
+                  <div class="team-pic"></div>
+                  <div>
+                    <h5>Jam Lam</h5>
+                    <p>Designer</p>
+                    <caption>@codekast</caption>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+
+        <!-- * Footer * -->
+        <div id="footer">
+          <div class="container">
+            <div class="col-md-6">
+              <div>
+
+              </div>
+            </div>
+            <div class="col-md-3">b</div>
+            <div class="col-md-3">c</div>
+          </div>
+          <div></div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>

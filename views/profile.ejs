@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+  <title>CodeKast</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+      html,body {
+          width: 100%;
+          height: 100%;
+          background: #eceff0;
+          font-family: 'Lato', sans-serif;
+      }
+
+      .container {
+          width: 80%;
+      }
+
+      #codekast-warper {
+          position: relative;
+      }
+
+      #ck-logo {
+          padding: 10px;
+          margin-left: 50px;
+      }
+
+      #ck-logo img {
+          float: left;
+      }
+
+      #ck-logo p {
+          color: white;
+          font-size: 14px;
+          font-weight: bold;
+          float: left;
+          line-height: 60px;
+      }
+
+      .active {
+          right: 280px;
+      }
+
+      header {
+          width: 100%;
+          height: 80px;
+          background: #2a3b41;
+          position: relative;
+      }
+
+      .ck-profile-warp {
+        width:100%;
+        height:100%;
+      }
+
+      .profile-header {
+        width:100%;
+        height:200px;
+        background: white;
+        border-bottom: 1px solid rgba(0,0,0,.3);
+      }
+
+      .profile-pic {
+        width: 150px;
+        height: 150px;
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        margin-left: -75px;
+        margin-top: 25px;
+      }
+      .profile-bio {
+        padding:30px 0 15px 0;
+      }
+      .profile-bio h1, .profile-bio h5 {
+        margin: 3px 0;
+      }
+
+      .profile-bio p {
+        margin-top:20px;
+      }
+
+
+      .profile-social {
+        padding:30px 0;
+      }
+
+      .social-link {
+        display:block;
+      }
+      .social-link i {
+        font-size:18px;
+        float:left;
+        width:20px;
+        margin-right:10px;
+      }
+
+      .social-link a {
+
+      }
+  </style>
+</head>
+<body>
+  <div id="codekast-warper">
+      <header>
+          <div id="ck-logo"><img src="/images/ck-logo.png" width="60">
+              <p>CodeKast.io</p>
+          </div>
+          <div id="user-log"></div>
+      </header>
+
+      <div class="ck-profile-warp">
+          <div class="profile-header">
+            <div class="container">
+                <div class="col-md-3 ">
+                  <img class="profile-pic"src="../images/user.jpg" />
+                </div>
+                <div class="col-md-6 profile-bio">
+                  <h1>Jam Jam</h1>
+                  <h5>UI / UX Desinger</h5>
+
+                  <p>I use to design websites and applications for the web.</p>
+                </div>
+                <div class="col-md-3 profile-social">
+                  <div class="social-link"><i class="fa fa-envelope-o"></i> <a href="#"><p>jamjam@jaminpie.me</p></a></div>
+                  <div class="social-link"><i class="fa fa-github"></i> <a href="#"><p>jaminpie</p></a></div>
+                  <div class="social-link"><i class="fa fa-facebook"></i> <a href="#"><p>http://www.facebook.com/jaminpie</p></a></div>
+                  <div class="social-link"><i class="fa fa-twitter"></i> <a href="#"><p>@jamjam_long</p></a></div>
+                </div>
+            </div>
+          </div>
+          <div class="profile-activites">
+            <div class="activites-tag"></div>
+            <div >
+              <div class="ck-room col-md-3">
+                <div class="newroom-wrap">
+                  <h1 class="room-title">HTML 5</h1>
+                  <p class="room-des">Learn with basic HTML tag and CSS3, to build a simple site to display.</p>
+                  <p class="room-creator">by <span class="creator-name">' + username + '</span></p>
+                  <a href="/classrooms/' + res._id + '" class="btn btn-primary" target="_blank">Join Room</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+  </div>
+</body>
+</html>

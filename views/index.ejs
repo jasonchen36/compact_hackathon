@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CodeKast</title>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            background: #eceff0;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .container {
+            width: 80%;
+        }
+
+        #codekast-warper {
+            position: relative;
+        }
+
+        #ck-logo {
+            padding: 10px;
+            margin-left: 50px;
+        }
+
+        #ck-logo img {
+            float: left;
+        }
+
+        #ck-logo p {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            float: left;
+            line-height: 60px;
+        }
+
+        .active {
+            right: 280px;
+        }
+
+        header {
+            width: 100%;
+            height: 80px;
+            background: #2a3b41;
+            position: relative;
+        }
+
+        #login-form {
+            width: 500px;
+            height: 600px;
+            position: relative;
+            margin: 50px auto;
+            border: 1px solid lightgrey;
+            background: white;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid rgba(151, 151, 151, 0.45);
+        }
+
+        #form-content {
+            width: 100%;
+            height: 100%;
+            padding: 10px 50px;
+        }
+
+        #form-content h1 {
+            font-family: SFUIDisplay-Regular;
+            font-size: 36px;
+            color: #777B7C;
+            letter-spacing: 1px;
+            line-height: 43px;
+        }
+
+        #form-content p {
+            opacity: 0.56;
+            font-family: SFUIText-Light;
+            font-size: 18px;
+            color: #777B7C;
+            line-height: 21px;
+        }
+
+        #git-logo {
+            width: 100%;
+            height: 60px;
+            margin: 20px 0;
+            line-height: 60px;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        #git-logo img {
+            padding: 15px 0;
+        }
+
+        #form-content input {
+            width: 100%;
+            height: 40px;
+            margin: 10px 0;
+            border-radius: 3px;
+            box-shadow: none;
+            outline: 0;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 0 15px;
+        }
+
+        #form-content input[type="submit"] {
+            background: #00b5e9;
+            color: white;
+            border: none;
+        }
+
+        #login-btn:hover, #signup-btn:hover {
+            cursor:pointer;
+        }
+        #login {}
+
+        #signup {
+            display: none;
+        }
+
+        .addBorder {
+          border-bottom:2px solid black;
+          margin-top: -2px;
+        }
+
+
+
+        div[data-tooltip] {
+  position: relative;
+}
+div[data-tooltip]::before,
+div[data-tooltip]::after {
+  position: absolute;
+  display: block;
+  opacity: 0.85;
+}
+div[data-tooltip]::before {
+  /*
+   * using data-tooltip instead of title so we
+   * don't have the real tooltip overlapping
+   */
+  content: attr(data-tooltip);
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px;
+  border-radius: 5px;
+  /* we don't want the text to wrap */
+  white-space: nowrap;
+  text-decoration: none;
+}
+div[data-tooltip]::after {
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  content: '';
+    display: block;
+}
+
+div[data-tooltip]:hover::before,
+div[data-tooltip]:hover::after {
+  display: block;
+}
+
+/** positioning **/
+
+/* right tooltip */
+div[data-tooltip][data-placement="right"]::before {
+  top: 25%;
+  left: 100%;
+  margin-left: 10px;
+}
+div[data-tooltip][data-placement="right"]::after {
+  border-right-color: #000;
+  border-left: none;
+  top: 50%;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: 4px;
+}
+    </style>
+</head>
+
+<body>
+    <div id="codekast-warper">
+        <header>
+            <div id="ck-logo"><img src="/images/ck-logo.png" width="60">
+                <p>CodeKast.io</p>
+            </div>
+            <div id="user-log"></div>
+        </header>
+        <div class="container">
+            <div id="login-form">
+                <div id="form-content">
+                    <h1>Start Learning Today</h1>
+                    <p>Sign up with Github or Email</p>
+
+                    <div id="git-logo" class="row">
+                        <div class="col-md-6 addBorder" id="login-btn">Login</div>
+                        <div class="col-md-6" id="signup-btn">Signup</div>
+                    </div>
+                    <div id="login">
+                        <!-- show any messages that come back with authentication -->
+
+                        <form action="/login" method="post" id="ck-signup-form">
+                            <!-- <div data-tooltip="Username taken" data-placement="right"> -->
+                              <input type="text" placeholder="Username or email" name="username_email" />
+                            <!-- </div> -->
+                            <input type="password" placeholder="Password" name="password" />
+                            <input type="submit" value="Log In" />
+                        </form>
+                    </div>
+                    <div id="signup">
+                        <form action="/signup" method="post" id="ck-signup-form">
+                            <input type="email" placeholder="Email" name="email"/>
+                            <input type="text" placeholder="Username" name="username"/>
+                            <input type="password" placeholder="Password" name="password"/>
+
+                            <input type="submit" value="I'm in!" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ERROR -->
+
+        <!-- <div class="jumbotron text-center">
+      <h1><span class="fa fa-lock"></span> Fix me</h1>
+
+      <p>Login or Register with:</p>
+
+      <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+      <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+    </div> -->
+
+    </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+      $("#login-btn").click(function(){
+        $("#signup-btn").removeClass("addBorder");
+        $("#login").show();
+        $("#signup").hide();
+        $(this).addClass("addBorder");
+      });
+
+      $("#signup-btn").click(function(){
+        $("#login-btn").removeClass("addBorder");
+        $("#signup").show();
+        $("#login").hide();
+        $(this).addClass("addBorder");
+      });
+    </script>
+</body>
+
+</html>
