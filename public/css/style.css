@@ -4,12 +4,12 @@ html, body {
   background: #eceff0;
 }
 
-.container {
-  width: 80%;
-}
 
 #codekast-wrapper {
   position:relative;
+  width:100%;
+  height:100%;
+  display: flex;
 }
 
 #ck-logo {
@@ -30,10 +30,11 @@ html, body {
   right:280px;
 }
 header {
-  width:100%;
-  height:80px;
+  width:150px;
+  height:100%;
   background:#2a3b41;
   position: relative;
+  float:left;
 }
 
 #user-log{
@@ -49,18 +50,31 @@ header {
 }
 
 .ck-roomwrapper {
-  padding-bottom:100px;
+  flex-grow: 1;
+  height:100%;
+  float:left;
+  overflow:auto;
+}
+
+.ck-banner {
+  width:95%;
+  height:200px;
+  border-radius: 2px;
+  border: 1px #D2D6DA solid;
+  background:white;
+  margin:25px auto;
 }
 
 .ck-room {
-  margin:30px;
-    height: 250px;
-    width: 300px;
-    border-radius: 5px;
-    border: 1px #cfd8da solid;
-    transition: box-shadow 200ms;
+  margin:20px;
+  height: 250px;
+  width: 460px;
+  border-radius: 2px;
+  border: 1px #D2D6DA solid;
+  transition: box-shadow 200ms;
   float:left;
   background: white;
+  position:relative;
 }
 
 .ck-room:hover {
@@ -79,18 +93,9 @@ header {
 .profile-act {
   width:280px;
   height:100%;
-  position: fixed;
-  right:-280px;
-  top:80px;
-  background: #0b1317;
+  float:right;
+  border-left:rgba(0,0,0,.2) 1px solid;
 }
-
-.profile-act {
--webkit-transition: all 0.3s ease;
--moz-transition: all 0.3s ease;
-transition: all 0.3s ease;
-}
-.active {right: 0;}
 
 #profile-icon {
 width:100%;
@@ -236,22 +241,21 @@ background-position: 0% 50%;
 
 .btn {
 margin-top:30px;
-border: 0;
-color:rgba(0,0,0,0.2);
+color:#A7A7A7;
 background-color: rgba(216,216,216,1);
 padding: 8px 10px 8px 10px;
-font-size: 12px;
-text-transform: uppercase;
+font-size: 14px;
 letter-spacing: .0875em;
-font-weight: 500;
 outline: 0;
+border-radius:2px;
 transition: background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1), color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .btn:focus, .btn:active,
 .btn:hover {
-background-color: #6EB1FF;
+background-color: #E2CD73;
 color: white;
+border:none;
 }
 
 .__first, .__second {
@@ -318,11 +322,16 @@ width:;
 }
 
 .btn-primary {
-position:absolute;
-right: 30px;
-bottom: 30px;
-background: #00b5e9;
-color:white;
+  width:127px;
+  height:40px;
+  position:absolute;
+  right: 30px;
+  bottom: 20px;
+  background: transparent;
+  border:#E2CD73 1px solid;
+  color:#A7A7A7;
+  font-weight:normal;
+  line-height:25px;
 }
 
 #footer {width:100%; height:80px; background: white; position:fixed; bottom: 0}

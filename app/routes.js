@@ -50,6 +50,9 @@ module.exports = function(app, passport) {
   app.get('/about', function(req, res) {
     res.render('about.ejs');
   });
+  app.get('/project', function(req, res) {
+    res.render('project.ejs');
+  });
   // show all classrooms belonging to logged in user
   app.get('/classrooms', isLoggedIn, function(req, res) {
     var room = [];

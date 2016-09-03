@@ -40,20 +40,7 @@
         </center>
       </div>
 
-      <% rooms.forEach(function(room) { %>
-      <div class="ck-room col-md-3">
-        <div class="newroom-wrap">
-          <h1 class="room-title"><%= room.name %></h1>
-          <p class="room-des"><%= room.desc %></p>
 
-          <div>
-            <p class="room-creator">by <span class="creator-name"><%= user.username %></span></p>
-            <a href="/classrooms/<%= room._id %>" class="btn btn-primary" target="_blank">Join Room</a>
-          </div>
-
-        </div>
-      </div>
-      <% }); %>
 
       <!-- todo: whole div clickable leads to edit classroom page, button to classroom page -->
       <!-- <div class="ck-room col-md-4">
@@ -67,7 +54,7 @@
     </div>
 
     <div class="profile-act">
-      
+
     </div>
 
   </div><!-- Wrapper end -->
@@ -90,17 +77,7 @@
 
     });
 
-    // predefined functions and socket handlers
-    var username = '<%= user.username %>';
-    // todo: render this upon page generation instead to prevent delay, or angular?
-    // function loadRooms() {
-    //   $.get('/api/classrooms', function(data) {
-    //     $.each(data, function(index, room) {
-    //       // $('#classes').append('<option>'+item+"</option>");
-    //       $('.ck-roomwrapper').append('<div class="ck-room col-md-3"><div class="newroom-wrap"><h1 class="room-title">' + room.name +'</h1><p class="room-des">'+ room.desc +'</p><p class="room-creator">by ' + username + '</p><a href="/classrooms/' + room.id + '" class="btn btn-primary" target="_blank">Join Room</a></div></div>');
-    //     });
-    //  });
-    // }
+    
 
     function addRoom() {
       console.log('addRoom() clicked.');
